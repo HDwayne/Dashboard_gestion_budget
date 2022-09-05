@@ -1,0 +1,77 @@
+{% extends 'budget/base.html' %}
+
+{% block title %}Dashboard - Dépense{% endblock %}
+
+{% block page_first_title %}Liste des dépenses{% endblock %}
+{% block page_title %}Dépenses{% endblock %}
+
+{% block content %}
+    <div style="background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(239,239,239,1) 50%);">
+        <div class="table-responsive">
+            <table class="table table-hover" style="text-align: center; margin-bottom:inherit;">
+                <thead class="thead-light">
+                    <tr>
+                        <th class="col" style="width: auto;">id</th>
+                        <th scope="col" style="width: auto;">Intitulé</th>
+                        <th scope="col" style="width: auto;">montant</th>
+                        <th scope="col" style="width: auto;">categorie</th>
+                        <th scope="col" style="width: auto;">date</th>
+                        <th scope="col" style="width: auto;">moyen_paiement</th>
+                        <th scope="col" style="width: auto;">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for depense in depense_list %}
+                        <tr>
+                            <th scope="row">{{ depense.id }}</th>
+                            <td>{{ depense.intitule }}</td>
+                            <td>{{ depense.montant }}€</td>
+                            <td>{{ depense.categorie }}</td>
+                            <td>{{ depense.date }}</td>
+                            <td>{{ depense.moyen_paiement }}</td>
+                            <td>
+                                <div class="btn-group" role="group" aria-label="Basic example">
+                                    <a href="{% url 'detail_depense' depense.id %}" class="btn btn-secondary">Afficher</a>
+                                    <a href="{% url 'delete_depense' depense.id %}" class="btn btn-secondary">Supprimer</a>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+                <caption>
+                    <div class="pagination">
+                        {% if depense_list.has_previous %}
+                            <a href="{% url 'depenses' %}?page={{ depense_list.previous_page_number }}">Précédent </a>
+                            <p>-</p>
+                        {% endif %}
+
+                        <span class="current">
+                            Page {{ depense_list.number }} sur {{ depense_list.paginator.num_pages }}
+                        </span>
+
+                        {% if depense_list.has_next %}
+                             <p>-</p>
+                            <a href="{% url 'depenses' %}?page={{ depense_list.next_page_number }}">Suivant</a>
+                        {% endif %}
+                    </div>
+                </caption>
+            </table>
+        </div>
+        <div class="border-top px-4 py-2" style="display: flex; justify-content: flex-end;" id="list-bottom">
+            {% if can_create %}
+                <div>
+                    <a href="{% url 'create_depense' %}" class="btn btn-info">Ajouter une dépenses</a>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+    <style>
+        .table th, .table td{
+            vertical-align: inherit;
+        }
+
+        body {
+            background-color: inherit;
+        }
+    </style>
+{% endblock %}

@@ -1,0 +1,80 @@
+{% extends 'budget/base.html' %}
+
+{% block title %}Dashboard - Dépense{% endblock %}
+
+{% block content %}
+    <div style="background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(239,239,239,1) 50%);">
+        <div class="card container">
+            <div class="card-header" style="font-size: 20px; text-transform: uppercase; background: none">
+                <a href="{% url 'update_depense' depense.id %}" class="close">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"></path>
+                        <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"></path>
+                    </svg>
+                </a>
+                <p>{{ depense.intitule }}</p>
+            </div>
+            <div class="card-body">
+                <div class="mb-3 row">
+                    <label for="staticEmail" class="col-sm-2 col-form-label">Montant</label>
+                    <div class="col-sm-10">
+                        <input type="number" readonly class="form-control-plaintext" id="" value="{{ depense.montant }}">
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    <label for="staticEmail" class="col-sm-2 col-form-label">Catégorie</label>
+                    <div class="col-sm-10">
+                        <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="{{ depense.categorie }}">
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    <label for="staticEmail" class="col-sm-2 col-form-label">Date</label>
+                    <div class="col-sm-10">
+                        <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="{{ depense.date }}">
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    <label for="staticEmail" class="col-sm-2 col-form-label">Moyen de paiement</label>
+                    <div class="col-sm-10">
+                        <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="{{ depense.moyen_paiement }}">
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    <label for="staticEmail" class="col-sm-2 col-form-label">Commentaire</label>
+                    <div class="col-sm-10">
+                        <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="{{ depense.commentaire }}">
+                    </div>
+                </div>
+
+                {% if depense.justificatif %}
+                    <div class="mb-3 row">
+                        <label for="staticEmail" class="col-sm-2 col-form-label">Justificatif</label>
+                        <div class="col-sm-10">
+                            <img src="{{ depense.justificatif.url }}" class="img-fluid" alt="{{ depense.justificatif.name }}">
+                        </div>
+                    </div>
+                {% endif %}
+
+                {% if depense.justificatifCB %}
+                    <div class="mb-3 row">
+                        <label for="staticEmail" class="col-sm-2 col-form-label">Justificatif CB</label>
+                        <div class="col-sm-10">
+                            <img src="{{ depense.justificatifCB.url }}" class="img-fluid" alt="{{ depense.justificatifCB.name }}">
+                        </div>
+                    </div>
+                {% endif %}
+
+                {% if depense.justificatif %}
+                    <a href="{{ depense.justificatif.url }}" download="{{ depense.justificatif.url }}"><button class="btn btn-outline-primary  mr-3" style="float: right;">Download justificatif</button></a>
+                {% endif %}
+                {% if depense.justificatifCB %}
+                    <a href="{{ depense.justificatifCB.url }}" download="{{ depense.justificatifCB.url }}"><button class="btn btn-outline-info mr-3" style="float: right;">Download justificatifCB</button></a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

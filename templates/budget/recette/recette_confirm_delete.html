@@ -1,0 +1,24 @@
+{% extends 'budget/base.html' %}
+{% load crispy_forms_filters %}
+
+{% block title %}Dashboard - Recette{% endblock %}
+
+{% block content %}
+    <div style="background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(239,239,239,1) 50%);">
+        <div class="container" style="width: 50%">
+            <h3>Supprimer</h3>
+            <form method="post">
+                {% csrf_token %}
+                <p>Êtes-vous sur de vouloir supprimer "{{ object }}" ?</p>
+                <div class="row">
+                    <div class="col">
+                        <a href="{% url 'recettes' %}" class="btn btn-secondary">Annuler</a>
+                    </div>
+                    <div class="col text-right">
+                        <input class="btn btn-info" type="submit" value="Confirm" />
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,80 @@
+{% extends 'budget/base.html' %}
+
+{% block title %}Dashboard - Recette{% endblock %}
+
+{% block page_first_title %}Liste des recettes{% endblock %}
+{% block page_title %}Recettes{% endblock %}
+
+{% block content %}
+    <div style="background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(239,239,239,1) 50%);">
+        <div class="table-responsive">
+            <table class="table table-hover" style="text-align: center; margin-bottom:inherit;">
+                <thead class="thead-light">
+                    <tr>
+                        <th class="col" style="width: auto;">id</th>
+                        <th scope="col" style="width: auto;">recu</th>
+                        <th scope="col" style="width: auto;">Intitulé</th>
+                        <th scope="col" style="width: auto;">montant</th>
+                        <th scope="col" style="width: auto;">date</th>
+                        <th scope="col" style="width: auto;">moyen_paiement</th>
+                        <th scope="col" style="width: auto;">origine</th>
+                        <th class="col" style="width: auto;">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for recette in recette_list %}
+                        <tr>
+                            <th scope="row">{{ recette.id }}</th>
+                            <td>{{ recette.recu }}</td>
+                            <td>{{ recette.intitule }}</td>
+                            <td>{{ recette.montant }}€</td>
+                            <td>{{ recette.date }}</td>
+                            <td>{{ recette.moyen_paiement }}</td>
+                            <td>{{ recette.origine }}</td>
+                            <td>
+                                <div class="btn-group" role="group" aria-label="Basic example">
+                                    <a href="{% url 'detail_recette' recette.id %}" class="btn btn-secondary">Afficher</a>
+                                    <a href="{% url 'delete_recette' recette.id %}" class="btn btn-secondary">Supprimer</a>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+                <caption>
+                    <div class="pagination">
+                    {% if recette_list.has_previous %}
+                        <a href="{% url 'recettes' %}?page={{ recette_list.previous_page_number }}">Précédent </a>
+                        <p>-</p>
+                    {% endif %}
+
+                    <span class="current">
+                        Page {{ recette_list.number }} sur {{ recette_list.paginator.num_pages }}
+                    </span>
+
+                    {% if recette_list.has_next %}
+                         <p>-</p>
+                        <a href="{% url 'recettes' %}?page={{ recette_list.next_page_number }}">Suivant</a>
+                    {% endif %}
+                </div>
+                </caption>
+            </table>
+        </div>
+        <div class="border-top px-4 py-2" style="display: flex; justify-content: flex-end;" id="list-bottom">
+            {% if can_create %}
+                <div>
+                    <a href="{% url 'create_recette' %}" class="btn btn-info">Ajouter une recette</a>
+                </div>
+            {% endif %}
+
+        </div>
+    </div>
+    <style>
+        .table th, .table td{
+            vertical-align: inherit;
+        }
+
+        body {
+            background-color: inherit;
+        }
+    </style>
+{% endblock %}

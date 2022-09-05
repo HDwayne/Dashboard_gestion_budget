@@ -1,0 +1,154 @@
+{% extends 'budget/base.html' %}
+
+{% block title %}Dashboard - Paramètres{% endblock %}
+
+{% block page_first_title %}Paramètre{% endblock %}
+
+{% block content %}
+    {% if messages %}
+        <ul class="messages">
+          {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+          {% endfor %}
+        </ul>
+    {% endif %}
+    <div style="background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(239,239,239,1) 50%);">
+        <div class="table-responsive">
+            <table class="table table-hover" style="text-align: center; margin-bottom:inherit;">
+                <thead class="thead-light">
+                    <tr>
+                        <th class="col" style="width: auto;">id</th>
+                        <th scope="col" style="width: auto;">Origine</th>
+                        <th scope="col" style="width: auto;">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for origine in origine_list %}
+                        <tr>
+                            <th scope="row">{{ origine.id }}</th>
+                            <td>{{ origine.origine }}</td>
+                            <td>
+                                <div class="btn-group" role="group" aria-label="Basic example">
+                                    <a href="{% url 'delete_origine' origine.id %}" class="btn btn-secondary">Supprimer</a>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="border-top px-4 py-2" style="display: flex; justify-content: flex-end;" id="list-bottom">
+            <div>
+                <a href="{% url 'create_origine' %}" class="btn btn-info">Ajouter une origine</a>
+            </div>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-hover" style="text-align: center; margin-bottom:inherit;">
+                <thead class="thead-light">
+                    <tr>
+                        <th class="col" style="width: auto;">id</th>
+                        <th scope="col" style="width: auto;">Moyen de paiement</th>
+                        <th scope="col" style="width: auto;">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for moyenpaiement in moyenpaiement_list %}
+                        <tr>
+                            <th scope="row">{{ moyenpaiement.id }}</th>
+                            <td>{{ moyenpaiement.moyens }}</td>
+                            <td>
+                                <div class="btn-group" role="group" aria-label="Basic example">
+                                    <a href="{% url 'delete_moyenpaiement' moyenpaiement.id %}" class="btn btn-secondary">Supprimer</a>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="border-top px-4 py-2" style="display: flex; justify-content: flex-end;" id="list-bottom">
+            <div>
+                <a href="{% url 'create_moyenpaiement' %}" class="btn btn-info">Ajouter un moyen de paiement</a>
+            </div>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-hover" style="text-align: center; margin-bottom:inherit;">
+                <thead class="thead-light">
+                    <tr>
+                        <th class="col" style="width: auto;">id</th>
+                        <th scope="col" style="width: auto;">Catégorie</th>
+                        <th scope="col" style="width: auto;">montant prévisionnel</th>
+                        <th scope="col" style="width: auto;">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for categorie in categorie_list %}
+                        <tr>
+                            <th scope="row">{{ categorie.id }}</th>
+                            <td>{{ categorie.categorie }}</td>
+                            <td>{{ categorie.montant_previsionnel }}€</td>
+                            <td>
+                                <div class="btn-group" role="group" aria-label="Basic example">
+                                    <a href="{% url 'update_categorie' categorie.id %}" class="btn btn-secondary">Modifier</a>
+                                    <a href="{% url 'delete_categorie' categorie.id %}" class="btn btn-secondary">Supprimer</a>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="border-top px-4 py-2" style="display: flex; justify-content: flex-end;" id="list-bottom">
+            <div>
+                <a href="{% url 'create_categorie' %}" class="btn btn-info">Ajouter une catégorie</a>
+            </div>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-hover" style="text-align: center; margin-bottom:inherit;">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col" style="width: auto;">Date de début</th>
+                        <th scope="col" style="width: auto;">Date de fin</th>
+                        <th scope="col" style="width: auto;">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if not camp %}
+                     <tr>
+                        <th scope="row"></th>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <a href="{% url 'create_camp' %}" class="btn btn-info">Ajouter les dates du camp</a>
+                            </div>
+                        </td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td>{{ camp.date_debut }}</td>
+                        <td>{{ camp.date_fin }}</td>
+                        <td>
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <a href="{% url 'update_camp' camp.id %}" class="btn btn-secondary">Modifier</a>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <style>
+        .table th, .table td{
+            vertical-align: inherit;
+        }
+
+        body {
+            background-color: inherit;
+        }
+    </style>
+{% endblock %}

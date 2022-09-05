@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="fr">
+    {% load static %}
+    <head>
+        <meta charset="UTF-8">
+        <title>Dashboard</title>
+        <link rel="stylesheet" href="{% static 'css/login.css' %}">
+        <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+        <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    </head>
+
+    <body class="align" style="margin-top: 50vh; transform: translateY(-60%);">
+        <section id="login">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="form-wrap">
+                            <h1>Vous êtes déconnecté de l'application</h1>
+                            <a href="{% url 'login' %}"><input type="submit" id="btn-login" class="btn btn-custom btn-lg btn-block" value="Reconnexion"></a>
+                        </div>
+                    </div> <!-- /.col-xs-12 -->
+                </div> <!-- /.row -->
+            </div> <!-- /.container -->
+        </section>
+    </body>
+</html>

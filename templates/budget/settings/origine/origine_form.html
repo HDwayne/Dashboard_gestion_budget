@@ -1,0 +1,26 @@
+{% extends 'budget/base.html' %}
+{% load crispy_forms_filters %}
+
+{% block title %}Dashboard - Paramètre{% endblock %}
+
+{% block content %}
+    <div style="background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(239,239,239,1) 50%);">
+        <div class="container">
+            <h3>Créer une origine</h3>
+
+            <form method="post" enctype="multipart/form-data" action="">
+                {% csrf_token %}
+                {{ form|crispy }}
+
+                <div class="row">
+                    <div class="col">
+                        <a href="{% url 'settings' %}" class="btn btn-secondary">Annuler</a>
+                    </div>
+                    <div class="col text-right">
+                        <input class="btn btn-info" type="submit" />
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

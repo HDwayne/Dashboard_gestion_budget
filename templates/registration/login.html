@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr">
+    {% load static %}
+    <head>
+        <meta charset="UTF-8">
+        <title>Dashboard</title>
+        <link rel="stylesheet" href="{% static 'css/login.css' %}">
+        <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+        <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    </head>
+
+    <body class="align" style="margin-top: 50vh; transform: translateY(-60%);">
+        <section id="login">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="form-wrap">
+                            <h1>Connexion</h1>
+                            <form action="", method="POST" class="form login" id="login-form">
+                                {% csrf_token %}
+                                    <div class="form-group">
+                                        <label for="{{ form.username.id_for_label }}">Nom d'utilisateur
+                                        </label>
+                                        <input type="text" name="{{ form.username.html_name }}" id="{{ form.username.id_for_label }}" class="form-control" placeholder=nom d'utilisateur" required>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="{{ form.password.id_for_label }}">Mot de passe
+                                        </label>
+                                        <input type="password" name="{{ form.password.html_name }}" id="{{ form.passwword.id_for_label }}" class="form-control"  placeholder="mot de passe" required>
+                                    </div>
+                                    <input type="submit" id="btn-login" class="btn btn-custom btn-lg btn-block" value="Connexion">
+                            </form>
+                        </div>
+                    </div> <!-- /.col-xs-12 -->
+                </div> <!-- /.row -->
+            </div> <!-- /.container -->
+
+{#            <footer id="footer">#}
+{#                <div class="container">#}
+{#                    <div class="row">#}
+{#                        <div class="col-xs-12">#}
+{#                            <p class="text--center">Pas de compte? <a href="#">Inscription</a></p>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </footer>#}
+        </section>
+    </body>
+</html>
