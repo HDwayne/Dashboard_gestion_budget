@@ -6,9 +6,9 @@
 
 <div align="center">
 
-[INFORMATION](https://github.com/HDwayne/HDwayne/Dashboard_gestion_budget/#-information) • 
-[INTERFACE](https://github.com/HDwayne/HDwayne/Dashboard_gestion_budget/#-interface) • 
-[REMERCIEMENT](https://github.com/HDwayne/HDwayne/Dashboard_gestion_budget/#-remerciement) 
+[INFORMATION](https://github.com/HDwayne/Dashboard_gestion_budget/tree/master#-information) • 
+[INTERFACE](https://github.com/HDwayne/Dashboard_gestion_budget/tree/master#-interface) • 
+[REMERCIEMENT](https://github.com/HDwayne/Dashboard_gestion_budget/tree/master#-remerciement) 
 
 </div>
 
