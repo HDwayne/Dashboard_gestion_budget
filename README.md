@@ -16,7 +16,7 @@
 
 # 🧐 Information
 
-Application web offrant un service de gestion de budget. 
+Application web offrant un service de suivi des recettes et des dépenses.
 
 # 👨‍💻 Interface
 
